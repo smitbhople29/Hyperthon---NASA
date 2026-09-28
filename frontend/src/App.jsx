@@ -1,4 +1,6 @@
+import { useState } from "react";
 import "./App.css";
+import FireMap from "./FireMap";
 
 /* Decorative starfield (deterministic, no data) */
 const stars = (() => {
@@ -144,6 +146,12 @@ function Diagram() {
 }
 
 export default function App() {
+  const [showMap, setShowMap] = useState(false);
+
+  if (showMap) {
+    return <FireMap onBack={() => setShowMap(false)} />;
+  }
+
   return (
     <div className="page" id="top">
       <div className="stars" aria-hidden="true">
@@ -160,7 +168,16 @@ export default function App() {
           <a href="#explore">Explore</a>
           <a href="#methodology">Methodology</a>
         </nav>
-        <a href="#explore" className="nav__cta">Explore Fire Map <span>→</span></a>
+        <a
+          href="#explore"
+          className="nav__cta"
+          onClick={(e) => {
+            e.preventDefault();
+            setShowMap(true);
+          }}
+        >
+          Explore Fire Map <span>→</span>
+        </a>
       </header>
 
       <main>
@@ -186,7 +203,16 @@ export default function App() {
               making satellite signals easier to explore, understand and act on.
             </p>
             <div className="actions">
-              <a href="#explore" className="btn btn--solid">Explore Fire Map <span>→</span></a>
+              <a
+                href="#explore"
+                className="btn btn--solid"
+                onClick={(e) => {
+                  e.preventDefault();
+                  setShowMap(true);
+                }}
+              >
+                Explore Fire Map <span>→</span>
+              </a>
               <a href="#mission" className="btn btn--line">How It Works</a>
             </div>
           </div>
@@ -244,7 +270,16 @@ export default function App() {
         {/* FINAL CTA */}
         <section className="sec sec--center cta">
           <h2>From observation<br />to <span className="ember">understanding.</span></h2>
-          <a href="#explore" className="btn btn--solid">EXPLORE PYROSCAN <span>→</span></a>
+          <a
+            href="#explore"
+            className="btn btn--solid"
+            onClick={(e) => {
+              e.preventDefault();
+              setShowMap(true);
+            }}
+          >
+            EXPLORE PYROSCAN <span>→</span>
+          </a>
         </section>
       </main>
 
